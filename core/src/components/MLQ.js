@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const MLQ = ({ rows }) => {
+  const { t } = useTranslation();
   const [executed, setExecuted] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
@@ -8,7 +10,7 @@ const MLQ = ({ rows }) => {
   useEffect(() => {
     if (!rows || rows.length === 0) return;
 
-    // ورودی‌ها رو مرتب و تمیز کنیم
+    // پاک‌سازی و مرتب‌سازی ورودی‌ها
     const processes = rows
       .map((p) => ({
         id: p.id,
@@ -26,7 +28,6 @@ const MLQ = ({ rows }) => {
     const n = processes.length;
 
     while (completed < n) {
-      // پیدا کردن صف‌های فعال (دارای پردازه‌های آماده)
       const available = processes.filter(
         (p) => p.arrivalTime <= time && p.remainingTime > 0
       );
@@ -36,7 +37,7 @@ const MLQ = ({ rows }) => {
         continue;
       }
 
-      // جدا کردن صف‌ها
+      // تفکیک صف‌ها
       const highQueue = available.filter((p) => p.queueLevel === 1);
       const lowQueue = available.filter((p) => p.queueLevel === 2);
 
@@ -55,7 +56,6 @@ const MLQ = ({ rows }) => {
         execTime = currentProcess.remainingTime;
       }
 
-      // اجرا
       executedTimeline.push({
         id: currentProcess.id,
         start: time,
@@ -72,7 +72,7 @@ const MLQ = ({ rows }) => {
       }
     }
 
-    // محاسبه WT و TAT
+    // محاسبه زمان‌ها
     let totalWT = 0,
       totalTAT = 0;
 
@@ -98,7 +98,7 @@ const MLQ = ({ rows }) => {
 
   return (
     <div className="container my-5">
-      <h4>Output for Multi-Level Queue (MLQ) Algorithm</h4>
+      <h4>{t("mlq.outputTitle")}</h4>
 
       {/* گانت چارت */}
       <div className="d-flex my-4 flex-wrap">
@@ -121,16 +121,19 @@ const MLQ = ({ rows }) => {
       </div>
 
       {/* جدول */}
-      <table className="table table-bordered text-center" style={{ margin: "auto" }}>
+      <table
+        className="table table-bordered text-center"
+        style={{ margin: "auto" }}
+      >
         <thead className="table-primary">
           <tr>
-            <th>Process</th>
-            <th>Queue</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Completion Time</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
+            <th>{t("mlq.process")}</th>
+            <th>{t("mlq.queue")}</th>
+            <th>{t("mlq.arrivalTime")}</th>
+            <th>{t("mlq.burstTime")}</th>
+            <th>{t("mlq.completionTime")}</th>
+            <th>{t("mlq.waitingTime")}</th>
+            <th>{t("mlq.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
@@ -150,8 +153,13 @@ const MLQ = ({ rows }) => {
 
       {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current.toFixed(2)}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current.toFixed(2)}</h5>
+        <h5>
+          {t("mlq.avgWaitingTime")}: {avgWaitingTimeRef.current.toFixed(2)}
+        </h5>
+        <h5>
+          {t("mlq.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current.toFixed(2)}
+        </h5>
       </div>
     </div>
   );

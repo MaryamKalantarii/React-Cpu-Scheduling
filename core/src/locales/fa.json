@@ -100,21 +100,9 @@
           "avgWaitingTime": "میانگین زمان انتظار",
           "avgTurnaroundTime": "میانگین زمان بازگشت"
         },
-        "priorityPreemptive": {
-          "outputTitle": "خروجی الگوریتم Priority پیش‌دستگاه",
-          "process": "فرآیند",
-          "arrivalTime": "زمان ورود",
-          "burstTime": "زمان پردازش",
-          "priority": "اولویت",
-          "startTime": "زمان شروع",
-          "finishTime": "زمان پایان",
-          "waitingTime": "زمان انتظار",
-          "turnaroundTime": "زمان بازگشت",
-          "avgWaitingTime": "میانگین زمان انتظار",
-          "avgTurnaroundTime": "میانگین زمان بازگشت"
-        },
+       
         "priorityNonPreemptive": {
-          "outputTitle": "خروجی الگوریتم Priority غیرپیش‌دستگاه",
+          "outputTitle": "خروجی الگوریتم Priority",
           "process": "فرآیند",
           "arrivalTime": "زمان ورود",
           "burstTime": "زمان پردازش",
@@ -162,6 +150,34 @@
   "avgWaitingTime": "میانگین زمان انتظار",
   "avgTurnaroundTime": "میانگین زمان بازگشت"
 },
+
+"selectAlgorithm": "انتخاب الگوریتم",
+"selectAlgorithmTitle": "لطفاً الگوریتم زمان‌بندی را انتخاب کنید",
+"timeQuantum": "کوانتوم زمان",
+"process": "پردازه",
+"arrivalTime": "زمان ورود",
+"burstTime": "زمان اجرا",
+"priority": "اولویت",
+"calculate": "محاسبه",
+"algorithms": {
+  "FIFO": "FIFO",
+  "SJF": "SJF",
+  "SRT": "SRT",
+  "LJF": "LJF",
+  "RLTF": "RLTF",
+  "RoundRobin": "RR",
+  "PriorityNonPreemptive": "Non-Preemptive"
+},
+"algorithmDescriptions": {
+  "FIFO": "الگوریتم FIFO پردازه‌ها را به ترتیب ورود اجرا می‌کند.",
+  "SJF": "الگوریتم SJF پردازه‌ای با کوتاه‌ترین زمان اجرا را انتخاب می‌کند.",
+  "SRT": "در SRTF، پردازه‌ای با کوتاه‌ترین زمان باقیمانده انتخاب می‌شود.",
+  "LJF": "الگوریتم LJF پردازه‌ای با طولانی‌ترین زمان اجرا را اول اجرا می‌کند.",
+  "RLTF": "در RLTF، پردازه‌ای با بیشترین زمان باقیمانده در اولویت است.",
+  "Round Robin": "در Round Robin، به هر پردازه بازه زمانی ثابتی اختصاص داده می‌شود.",
+  "Priority Preemptive": "در اولویت پیش‌دستانه، پردازه‌ای با اولویت بالاتر می‌تواند پردازه فعلی را قطع کند.",
+  "Priority Non-Preemptive": "در اولویت غیر پیش‌دستانه، پردازه‌ها بدون وقفه و براساس اولویت اجرا می‌شوند."
+},
             
     "hero": {
       "title": "دیدگاه خود را به واقعیت تبدیل کنید",
@@ -170,5 +186,8 @@
       "learnMore": "بیشتر بدانید"
     },
     "videoNotSupported": "مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند"
-  }
   
+  }
+
+  
+ 

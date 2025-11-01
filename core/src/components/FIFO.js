@@ -1,21 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const FIFO = ({ rows }) => {
+  const { t } = useTranslation(); // اتصال به i18next
   const [processes, setProcesses] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
 
   useEffect(() => {
     if (rows && rows.length > 0) {
-
-      const sortedRows = rows.slice().sort((a, b) => parseInt(a.arrivalTime) - parseInt(b.arrivalTime));
+      const sortedRows = rows
+        .slice()
+        .sort((a, b) => parseInt(a.arrivalTime) - parseInt(b.arrivalTime));
 
       let totalWaitingTime = 0;
       let totalTurnaroundTime = 0;
-
       let prevFinishTime = 0;
+
       const updatedProcesses = sortedRows.map((row, index) => {
-        const startTime = index > 0 ? prevFinishTime : parseInt(row.arrivalTime);
+        const startTime =
+          index > 0 ? prevFinishTime : parseInt(row.arrivalTime) || 0;
         const waitingTime = startTime - parseInt(row.arrivalTime);
         const finishTime = startTime + parseInt(row.burstTime);
         const turnaroundTime = finishTime - parseInt(row.arrivalTime);
@@ -29,7 +33,7 @@ const FIFO = ({ rows }) => {
           startTime,
           finishTime,
           waitingTime,
-          turnaroundTime
+          turnaroundTime,
         };
       });
 
@@ -41,40 +45,69 @@ const FIFO = ({ rows }) => {
   }, [rows]);
 
   return (
-    <div className='container my-5 '>
-      <h3>Output for FIFO Algorithm:</h3>
-      <div className='d-flex my-4'>
-        {processes.map((process)=>(<div className="border border-primary text-center" style={{ height: '500%', width: '20%', background: '#CBDBFF'}}>P{process.id}<br/>({process.startTime}-{process.finishTime})</div>))}
+    <div className="container my-5">
+      <h3>{t("fifo.outputTitle")}</h3>
+
+      {/* گانت چارت */}
+      <div className="d-flex my-4">
+        {processes.map((p) => (
+          <div
+            key={p.id}
+            className="border border-primary text-center"
+            style={{ height: "100%", width: "20%", background: "#CBDBFF" }}
+          >
+            P{p.id}
+            <br />
+            ({p.startTime}-{p.finishTime})
+          </div>
+        ))}
       </div>
-      <table style={{margin: "auto"}} class="table text-center table-bordered">
+
+      {/* جدول */}
+      <table
+        style={{ margin: "auto" }}
+        className="table text-center table-bordered"
+      >
         <thead>
-          <tr className='table-primary'>
-            <th scope="col">Process</th>
-            <th scope="col">Arrival Time</th>
-            <th scope="col">Burst Time</th>
-            <th scope="col">Start Time</th>
-            <th scope="col">Finish Time</th>
-            <th scope="col">Waiting Time</th>
-            <th scope="col">Turnaround Time</th>
+          <tr className="table-primary">
+            <th>{t("fifo.process")}</th>
+            <th>{t("fifo.arrivalTime")}</th>
+            <th>{t("fifo.burstTime")}</th>
+            <th>{t("fifo.startTime")}</th>
+            <th>{t("fifo.finishTime")}</th>
+            <th>{t("fifo.waitingTime")}</th>
+            <th>{t("fifo.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
-          {processes.map((process) => (
-            <tr key={process.id}>
-              <td>{`P${process.id}`}</td>
-              <td>{process.arrivalTime}</td>
-              <td>{process.burstTime}</td>
-              <td>{process.startTime}</td>
-              <td>{process.finishTime}</td>
-              <td>{process.waitingTime}</td>
-              <td>{process.turnaroundTime}</td>
+          {processes.map((p) => (
+            <tr key={p.id}>
+              <td>{`P${p.id}`}</td>
+              <td>{p.arrivalTime}</td>
+              <td>{p.burstTime}</td>
+              <td>{p.startTime}</td>
+              <td>{p.finishTime}</td>
+              <td>{p.waitingTime}</td>
+              <td>{p.turnaroundTime}</td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current ? avgWaitingTimeRef.current.toFixed(2) : '-'}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current ? avgTurnaroundTimeRef.current.toFixed(2) : '-'}</h5>
+        <h5>
+          {t("fifo.avgWaitingTime")}:{" "}
+          {avgWaitingTimeRef.current
+            ? avgWaitingTimeRef.current.toFixed(2)
+            : "-"}
+        </h5>
+        <h5>
+          {t("fifo.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current
+            ? avgTurnaroundTimeRef.current.toFixed(2)
+            : "-"}
+        </h5>
       </div>
     </div>
   );

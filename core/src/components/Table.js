@@ -1,168 +1,173 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Sjf from "./Sjf";
 import RoundRobinScheduler from "./RR";
-
+import FIFO from "./FIFO";
+import SRT from "./SRT";
+import LJF from "./LJF";
+import RLTF from "./RLTF";
+import PriorityScheduling from "./PriorityScheduling";
 const Table = ({ onEvaluate = () => {} }) => {
+  const { t } = useTranslation();
+
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState(false);
   const [quantum, setQuantum] = useState("");
-  const [showSjf, setShowSjf] = useState(false);
-  const [showRoundRobin, setShowRoundRobin] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [showAlgo, setShowAlgo] = useState("");
   const [rows, setRows] = useState([
     { id: "1", arrivalTime: "", burstTime: "", priority: "" },
     { id: "2", arrivalTime: "", burstTime: "", priority: "" },
     { id: "3", arrivalTime: "", burstTime: "", priority: "" },
   ]);
 
+  useEffect(() => {
+    setRows([
+      { id: "1", arrivalTime: "", burstTime: "", priority: "" },
+      { id: "2", arrivalTime: "", burstTime: "", priority: "" },
+      { id: "3", arrivalTime: "", burstTime: "", priority: "" },
+    ]);
+  }, [title]);
+
   const addRow = () => {
-    const newRow = { id: (rows.length + 1).toString(), arrivalTime: "", burstTime: "", priority: "" };
-    setRows([...rows, newRow]);
+    setRows([
+      ...rows,
+      { id: rows.length + 1, arrivalTime: "", burstTime: "", priority: "" },
+    ]);
   };
 
   const removeRow = () => {
-    if (rows.length > 1) setRows(rows.slice(0, rows.length - 1));
+    if (rows.length > 1) {
+      setRows(rows.slice(0, -1));
+    }
   };
 
   const setAlgo = (algoName) => {
     setTitle(algoName);
-    setPriority(algoName === "Priority Preemptive" || algoName === "Priority Non-Preemptive");
-    setQuantum(algoName === "Round Robin" ? "" : false);
-
-    setShowSjf(false);
-    setShowRoundRobin(false);
+    setPriority(
+      algoName === "Priority Preemptive" || algoName === "Priority Non-Preemptive"
+    );
+    setQuantum(algoName === "Round Robin" ? true : false);
+    setShowAlgo("");
   };
 
   const handleEvaluate = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    const tableData = rows.map((row) => ({
+      id: row.id,
+      arrivalTime: row.arrivalTime,
+      burstTime: row.burstTime,
+      priority: row.priority,
+    }));
 
-      const tableData = rows.map((row) => ({
-        id: row.id,
-        arrivalTime: Number(row.arrivalTime),
-        burstTime: Number(row.burstTime),
-        priority: Number(row.priority),
-      }));
-
-      onEvaluate(tableData, Number(quantum));
-
-      if (title === "SJF") setShowSjf(true);
-      else if (title === "Round Robin") setShowRoundRobin(true);
-    }, 500);
+    onEvaluate(tableData, quantum);
+    setShowAlgo(title);
   };
 
-  const handleRowChange = (id, field, value) => {
-    const updatedRows = rows.map((row) =>
-      row.id === id ? { ...row, [field]: value } : row
-    );
-    setRows(updatedRows);
+  const renderAlgorithm = () => {
+    switch (showAlgo) {
+      case "SJF":
+        return <Sjf rows={rows} />;
+      case "Round Robin":
+        return <RoundRobinScheduler rows={rows} quantum={quantum} />;
+      case "PriorityScheduling":
+         return <PriorityScheduling rows={rows} />;
+      case "SRT":
+        return <SRT rows={rows} />;
+      case "LJF":
+        return <LJF rows={rows} />;
+      case "RLTF":
+        return <RLTF rows={rows} />;
+      case "FIFO":
+        return <FIFO rows={rows} />;
+      default:
+        return null;
+    }
   };
 
   return (
     <div style={{ background: "rgba(250, 250, 250, 0.657)" }}>
-      <div className="d-flex justify-content-center align-items-center my-4">
-        <h1>{title || "Select Algorithm"} Algorithm</h1>
-        <div className="dropdown ms-3">
+      <div className="d-flex justify-content-center align-items-center">
+        <h1 className="text-center my-4">{title ? `${title} Algorithm` : t("selectAlgorithmTitle")}</h1>
+        <div className="dropdown ms-4">
           <button
             className="btn btn-secondary dropdown-toggle"
             type="button"
-            id="dropdownMenuButton"
+            id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Select Algorithm
+            {t("selectAlgorithm")}
           </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-              <button className="dropdown-item" onClick={() => setAlgo("SJF")}>
-                SJF
-              </button>
-            </li>
-            <li>
-              <button className="dropdown-item" onClick={() => setAlgo("Round Robin")}>
-                Round Robin
-              </button>
-            </li>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><Link className="dropdown-item" onClick={() => setAlgo("FIFO")} to="#">{t("algorithms.FIFO")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("SJF")} to="#">{t("algorithms.SJF")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("SRT")} to="#">{t("algorithms.SRT")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("LJF")} to="#">{t("algorithms.LJF")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("RLTF")} to="#">{t("algorithms.RLTF")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("Round Robin")} to="#">{t("algorithms.RoundRobin")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("Priority Non-Preemptive")} to="#">{t("algorithms.PriorityNonPreemptive")}</Link></li>
           </ul>
         </div>
       </div>
 
-      {title === "Round Robin" && (
-        <div className="d-flex justify-content-center align-items-center mb-3">
-          <h5>Time Quantum: </h5>
-          <input
-            type="number"
-            value={quantum}
-            onChange={(e) => setQuantum(e.target.value)}
-            style={{ width: "70px", marginLeft: "10px" }}
-            className="form-control"
-          />
+      {/* توضیحات الگوریتم انتخاب شده */}
+      {title && (
+        <div className="text-center my-3">
+          <p className="lead">{t(`algorithmDescriptions.${title}`)}</p>
         </div>
       )}
 
-      <table className="table table-striped table-bordered text-center" style={{ width: "70%", margin: "auto" }}>
-        <thead className="table-primary">
-          <tr>
-            <th>Process</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            {priority && <th>Priority</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.id}>
-              <td>P{row.id}</td>
-              <td>
-                <input
-                  type="number"
-                  value={row.arrivalTime}
-                  onChange={(e) => handleRowChange(row.id, "arrivalTime", e.target.value)}
-                  className="form-control text-center"
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  value={row.burstTime}
-                  onChange={(e) => handleRowChange(row.id, "burstTime", e.target.value)}
-                  className="form-control text-center"
-                />
-              </td>
-              {priority && (
-                <td>
-                  <input
-                    type="number"
-                    value={row.priority}
-                    onChange={(e) => handleRowChange(row.id, "priority", e.target.value)}
-                    className="form-control text-center"
-                  />
-                </td>
-              )}
+      <div className="container" style={{ marginTop: "3rem" }}>
+        {quantum && (
+          <div className="d-flex justify-content-center mb-3">
+            <h5>{t("timeQuantum")}:</h5>
+            <input
+              value={quantum}
+              onChange={(e) => setQuantum(e.target.value)}
+              type="number"
+              className="form-control w-auto ms-2"
+            />
+          </div>
+        )}
+
+        {/* جدول ورودی پردازه‌ها */}
+        <table className="table text-center table-striped table-bordered" style={{ width: "70%", margin: "auto" }}>
+          <thead>
+            <tr>
+              <th>{t("process")}</th>
+              <th>{t("arrivalTime")}</th>
+              <th>{t("burstTime")}</th>
+              {priority && <th>{t("priority")}</th>}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                <td>P{row.id}</td>
+                <td><input type="number" value={row.arrivalTime} onChange={(e) => (row.arrivalTime = e.target.value, setRows([...rows]))} className="form-control text-center" /></td>
+                <td><input type="number" value={row.burstTime} onChange={(e) => (row.burstTime = e.target.value, setRows([...rows]))} className="form-control text-center" /></td>
+                {priority && (
+                  <td><input type="number" value={row.priority} onChange={(e) => (row.priority = e.target.value, setRows([...rows]))} className="form-control text-center" /></td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <div className="d-flex justify-content-center my-3">
-        <button className="btn btn-link" onClick={addRow}>
-          <i className="uil uil-plus-circle" style={{ fontSize: "30px" }}></i>
-        </button>
-        <button className="btn btn-link ms-3" onClick={removeRow}>
-          <i className="uil uil-minus-circle" style={{ fontSize: "30px" }}></i>
-        </button>
+        <div className="text-center my-3">
+          <button onClick={addRow} className="btn btn-success mx-2">+</button>
+          <button onClick={removeRow} className="btn btn-danger mx-2">-</button>
+        </div>
+
+        <div className="text-center">
+          <button type="button" onClick={handleEvaluate} className="btn btn-primary">
+            {t("calculate")}
+          </button>
+        </div>
       </div>
 
-      <div className="text-center mb-4">
-        <button className="btn btn-primary" onClick={handleEvaluate}>
-          Calculate
-        </button>
-      </div>
-
-      {loading && <div className="text-center">Loading...</div>}
-      {showSjf && <Sjf rows={rows} />}
-      {showRoundRobin && <RoundRobinScheduler rows={rows} quantum={Number(quantum)} />}
+      {/* خروجی الگوریتم */}
+      <div className="mt-5">{renderAlgorithm()}</div>
     </div>
   );
 };

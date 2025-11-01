@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const RoundRobinScheduler = ({ rows, quantum }) => {
+  const { t } = useTranslation();
   const [processes, setProcesses] = useState([]);
   const [processes1, setProcesses1] = useState([]);
   const avgWaitingTimeRef = useRef(0);
@@ -8,8 +10,9 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
 
   useEffect(() => {
     if (rows && rows.length > 0 && quantum > 0) {
-      // Sort rows by arrival time
-      const sortedRows = rows.slice().sort((a, b) => parseInt(a.arrivalTime) - parseInt(b.arrivalTime));
+      const sortedRows = rows
+        .slice()
+        .sort((a, b) => parseInt(a.arrivalTime) - parseInt(b.arrivalTime));
 
       let currentTime = 0;
       let remainingBurstTimes = sortedRows.map((row) => parseInt(row.burstTime));
@@ -21,22 +24,23 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
       while (remainingBurstTimes.some((bt) => bt > 0)) {
         for (let i = 0; i < sortedRows.length; i++) {
           const burstTime = remainingBurstTimes[i];
-
           if (burstTime > 0) {
             const executeTime = Math.min(quantum, burstTime);
-            const start = currentTime; // Keep track of the actual start time
+            const start = currentTime;
             currentTime += executeTime;
             remainingBurstTimes[i] -= executeTime;
 
-            const turnaroundTime = currentTime - parseInt(sortedRows[i].arrivalTime);
-            const waitingTime = turnaroundTime - parseInt(sortedRows[i].burstTime);
+            const turnaroundTime =
+              currentTime - parseInt(sortedRows[i].arrivalTime);
+            const waitingTime =
+              turnaroundTime - parseInt(sortedRows[i].burstTime);
 
             waitingTimes[i] = waitingTime;
             turnaroundTimes[i] = turnaroundTime;
 
             updatedProcesses.push({
               ...sortedRows[i],
-              startTime: start, // Set the actual start time
+              startTime: start,
               finishTime: currentTime,
               waitingTime,
               turnaroundTime,
@@ -47,9 +51,9 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
 
       const finalProcesses = [];
 
-      for(let i = 0; i < sortedRows.length; i++) {
+      for (let i = 0; i < sortedRows.length; i++) {
         let index = 0;
-        for(let j = 0; j < updatedProcesses.length; j++) {
+        for (let j = 0; j < updatedProcesses.length; j++) {
           if (updatedProcesses[j].id === sortedRows[i].id) {
             index = j;
           }
@@ -58,37 +62,52 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
       }
 
       const totalWaitingTime = waitingTimes.reduce((acc, val) => acc + val, 0);
-      const totalTurnaroundTime = turnaroundTimes.reduce((acc, val) => acc + val, 0);
+      const totalTurnaroundTime = turnaroundTimes.reduce(
+        (acc, val) => acc + val,
+        0
+      );
 
       avgWaitingTimeRef.current = totalWaitingTime / sortedRows.length;
       avgTurnaroundTimeRef.current = totalTurnaroundTime / sortedRows.length;
 
       setProcesses(updatedProcesses);
-      setProcesses1(finalProcesses); // Set processes1 with updatedProcesses
+      setProcesses1(finalProcesses);
     }
   }, [rows, quantum]);
 
   return (
     <div className="container my-5">
-      <h4>Output for Round Robin Algorithm:</h4>
+      <h4>{t("rr.outputTitle")}</h4>
+
+      {/* Gantt Chart */}
       <div className="d-flex my-4">
-        {processes.map((process) => (
-          <div key={process.id} className="border border-primary text-center" style={{ height: '500%', width: '20%' ,background: '#CBDBFF'}}>
-            P{process.id}<br />
+        {processes.map((process, index) => (
+          <div
+            key={index}
+            className="border border-primary text-center"
+            style={{ height: "100%", width: "20%", background: "#CBDBFF" }}
+          >
+            P{process.id}
+            <br />
             ({process.startTime}-{process.finishTime})
           </div>
         ))}
       </div>
-      <table className="table text-center table-bordered" style={{ margin: 'auto' }}>
+
+      {/* Table */}
+      <table
+        className="table text-center table-bordered"
+        style={{ margin: "auto" }}
+      >
         <thead>
           <tr className="table-primary">
-            <th scope="col">Process</th>
-            <th scope="col">Arrival Time</th>
-            <th scope="col">Burst Time</th>
-            <th scope="col">Start Time</th>
-            <th scope="col">Finish Time</th>
-            <th scope="col">Waiting Time</th>
-            <th scope="col">Turnaround Time</th>
+            <th>{t("rr.process")}</th>
+            <th>{t("rr.arrivalTime")}</th>
+            <th>{t("rr.burstTime")}</th>
+            <th>{t("rr.startTime")}</th>
+            <th>{t("rr.finishTime")}</th>
+            <th>{t("rr.waitingTime")}</th>
+            <th>{t("rr.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
@@ -105,9 +124,21 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
           ))}
         </tbody>
       </table>
+
+      {/* Averages */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current ? avgWaitingTimeRef.current.toFixed(2) : '-'}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current ? avgTurnaroundTimeRef.current.toFixed(2) : '-'}</h5>
+        <h5>
+          {t("rr.avgWaitingTime")}:{" "}
+          {avgWaitingTimeRef.current
+            ? avgWaitingTimeRef.current.toFixed(2)
+            : "-"}
+        </h5>
+        <h5>
+          {t("rr.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current
+            ? avgTurnaroundTimeRef.current.toFixed(2)
+            : "-"}
+        </h5>
       </div>
     </div>
   );
