@@ -1,0 +1,174 @@
+{
+    "sjf": {
+      "outputTitle": "خروجی الگوریتم SJF",
+      "process": "فرآیند",
+      "arrivalTime": "زمان ورود",
+      "burstTime": "زمان پردازش",
+      "startTime": "زمان شروع",
+      "finishTime": "زمان پایان",
+      "waitingTime": "زمان انتظار",
+      "turnaroundTime": "زمان بازگشت",
+      "avgWaitingTime": "میانگین زمان انتظار",
+      "avgTurnaroundTime": "میانگین زمان بازگشت"
+    },
+    "rr": {
+      "outputTitle": "خروجی الگوریتم Round Robin",
+      "process": "فرآیند",
+      "arrivalTime": "زمان ورود",
+      "burstTime": "زمان پردازش",
+      "startTime": "زمان شروع",
+      "finishTime": "زمان پایان",
+      "waitingTime": "زمان انتظار",
+      "turnaroundTime": "زمان بازگشت",
+      "avgWaitingTime": "میانگین زمان انتظار",
+      "avgTurnaroundTime": "میانگین زمان بازگشت"
+    },
+    "edf": {
+      "outputTitle": "خروجی الگوریتم EDF (اولویت فوری)",
+      "process": "فرآیند",
+      "arrivalTime": "زمان ورود",
+      "burstTime": "زمان پردازش",
+      "deadline": "مهلت انجام",
+      "startTime": "زمان شروع",
+      "finishTime": "زمان پایان",
+      "waitingTime": "زمان انتظار",
+      "turnaroundTime": "زمان بازگشت",
+      "avgWaitingTime": "میانگین زمان انتظار",
+      "avgTurnaroundTime": "میانگین زمان بازگشت"
+    },
+    "fpps": {
+      "outputTitle": "خروجی الگوریتم FPPS (اولویت ثابت پیش‌گیرانه)",
+      "process": "فرآیند",
+      "arrivalTime": "زمان ورود",
+      "burstTime": "زمان پردازش",
+      "priority": "اولویت",
+      "startTime": "زمان شروع",
+      "finishTime": "زمان پایان",
+      "waitingTime": "زمان انتظار",
+      "turnaroundTime": "زمان بازگشت",
+      "avgWaitingTime": "میانگین زمان انتظار",
+      "avgTurnaroundTime": "میانگین زمان بازگشت"
+    },
+    "hrrn": {
+      "outputTitle": "خروجی الگوریتم HRRN (نرخ پاسخ بالاتر)",
+      "process": "فرآیند",
+      "arrivalTime": "زمان ورود",
+      "burstTime": "زمان پردازش",
+      "startTime": "زمان شروع",
+      "finishTime": "زمان پایان",
+      "waitingTime": "زمان انتظار",
+      "turnaroundTime": "زمان بازگشت",
+      "avgWaitingTime": "میانگین زمان انتظار",
+      "avgTurnaroundTime": "میانگین زمان بازگشت"
+    },
+    "mlq": {
+        "outputTitle": "خروجی الگوریتم MLQ (صف‌بندی چندسطحی ثابت)",
+        "process": "فرآیند",
+        "arrivalTime": "زمان ورود",
+        "burstTime": "زمان پردازش",
+        "queue": "سطح صف",
+        "startTime": "زمان شروع",
+        "finishTime": "زمان پایان",
+        "waitingTime": "زمان انتظار",
+        "turnaroundTime": "زمان بازگشت",
+        "avgWaitingTime": "میانگین زمان انتظار",
+        "avgTurnaroundTime": "میانگین زمان بازگشت"
+      },
+      "mlfq": {
+        "outputTitle": "خروجی الگوریتم MLFQ (صف‌بندی چندسطحی متغیر)",
+        "process": "فرآیند",
+        "arrivalTime": "زمان ورود",
+        "burstTime": "زمان پردازش",
+        "queue": "سطح صف",
+        "startTime": "زمان شروع",
+        "finishTime": "زمان پایان",
+        "waitingTime": "زمان انتظار",
+        "turnaroundTime": "زمان بازگشت",
+        "avgWaitingTime": "میانگین زمان انتظار",
+        "avgTurnaroundTime": "میانگین زمان بازگشت"
+      },
+      
+        "srt": {
+          "outputTitle": "خروجی الگوریتم SRT (کوتاه‌ترین زمان باقی‌مانده)",
+          "process": "فرآیند",
+          "arrivalTime": "زمان ورود",
+          "burstTime": "زمان پردازش",
+          "startTime": "زمان شروع",
+          "finishTime": "زمان پایان",
+          "waitingTime": "زمان انتظار",
+          "turnaroundTime": "زمان بازگشت",
+          "avgWaitingTime": "میانگین زمان انتظار",
+          "avgTurnaroundTime": "میانگین زمان بازگشت"
+        },
+        "priorityPreemptive": {
+          "outputTitle": "خروجی الگوریتم Priority پیش‌دستگاه",
+          "process": "فرآیند",
+          "arrivalTime": "زمان ورود",
+          "burstTime": "زمان پردازش",
+          "priority": "اولویت",
+          "startTime": "زمان شروع",
+          "finishTime": "زمان پایان",
+          "waitingTime": "زمان انتظار",
+          "turnaroundTime": "زمان بازگشت",
+          "avgWaitingTime": "میانگین زمان انتظار",
+          "avgTurnaroundTime": "میانگین زمان بازگشت"
+        },
+        "priorityNonPreemptive": {
+          "outputTitle": "خروجی الگوریتم Priority غیرپیش‌دستگاه",
+          "process": "فرآیند",
+          "arrivalTime": "زمان ورود",
+          "burstTime": "زمان پردازش",
+          "priority": "اولویت",
+          "startTime": "زمان شروع",
+          "finishTime": "زمان پایان",
+          "waitingTime": "زمان انتظار",
+          "turnaroundTime": "زمان بازگشت",
+          "avgWaitingTime": "میانگین زمان انتظار",
+          "avgTurnaroundTime": "میانگین زمان بازگشت"
+        },
+     "fifo": {
+        "outputTitle": "خروجی الگوریتم FIFO (اولین ورود، اولین خروج)",
+        "process": "فرآیند",
+        "arrivalTime": "زمان ورود",
+        "burstTime": "زمان پردازش",
+        "startTime": "زمان شروع",
+        "finishTime": "زمان پایان",
+        "waitingTime": "زمان انتظار",
+        "turnaroundTime": "زمان بازگشت",
+        "avgWaitingTime": "میانگین زمان انتظار",
+        "avgTurnaroundTime": "میانگین زمان بازگشت"
+        },
+        "ljf": {
+  "outputTitle": "خروجی الگوریتم LJF",
+  "process": "پردازه",
+  "arrivalTime": "زمان ورود",
+  "burstTime": "زمان اجرا",
+  "startTime": "زمان شروع",
+  "finishTime": "زمان پایان",
+  "waitingTime": "زمان انتظار",
+  "turnaroundTime": "زمان بازگشت",
+  "avgWaitingTime": "میانگین زمان انتظار",
+  "avgTurnaroundTime": "میانگین زمان بازگشت"
+},
+"rltf": {
+  "outputTitle": "خروجی الگوریتم RLTF",
+  "process": "پردازه",
+  "arrivalTime": "زمان ورود",
+  "burstTime": "زمان اجرا",
+  "startTime": "زمان شروع",
+  "finishTime": "زمان پایان",
+  "waitingTime": "زمان انتظار",
+  "turnaroundTime": "زمان بازگشت",
+  "avgWaitingTime": "میانگین زمان انتظار",
+  "avgTurnaroundTime": "میانگین زمان بازگشت"
+},
+            
+    "hero": {
+      "title": "دیدگاه خود را به واقعیت تبدیل کنید",
+      "description": "ما به قدرت خلق هدفمند اعتقاد داریم، جایی که هر جزئیات به یک هدف بزرگتر خدمت می‌کند.",
+      "getStarted": "شروع کنید",
+      "learnMore": "بیشتر بدانید"
+    },
+    "videoNotSupported": "مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند"
+  }
+  
