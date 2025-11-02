@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const EDF = ({ rows }) => {
+  const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
@@ -8,7 +10,6 @@ const EDF = ({ rows }) => {
   useEffect(() => {
     if (!rows || rows.length === 0) return;
 
-    // ساخت کپی از ورودی
     const processes = rows.map((p) => ({
       id: p.id,
       arrivalTime: parseInt(p.arrivalTime),
@@ -28,7 +29,6 @@ const EDF = ({ rows }) => {
     const timeline = [];
 
     while (completed < n) {
-      // انتخاب پردازه‌هایی که تا این لحظه رسیده‌اند
       const available = processes.filter(
         (p) => p.arrivalTime <= time && !p.completed
       );
@@ -38,17 +38,16 @@ const EDF = ({ rows }) => {
         continue;
       }
 
-      // انتخاب پردازه‌ای که deadline زودتری دارد
+      // انتخاب پردازه با زودترین deadline
       available.sort((a, b) => a.deadline - b.deadline);
       const current = available[0];
 
       if (current.startTime === null) current.startTime = time;
 
-      // اجرای یک واحد زمانی
       time++;
       current.remainingTime--;
 
-      // ذخیره بازه‌های اجرا برای نمودار گانت
+      // ذخیره بازه اجرا برای گانت چارت
       if (
         timeline.length === 0 ||
         timeline[timeline.length - 1].id !== current.id
@@ -86,9 +85,9 @@ const EDF = ({ rows }) => {
 
   return (
     <div className="container my-5">
-      <h4>Earliest Deadline First (EDF) Scheduling</h4>
+      <h4>{t("edf.outputTitle")}</h4>
 
-      {/* نمودار گانت */}
+      {/* گانت چارت */}
       <div className="d-flex my-4 flex-wrap">
         {executedProcesses.timeline.map((item, i) => (
           <div
@@ -106,21 +105,21 @@ const EDF = ({ rows }) => {
         ))}
       </div>
 
-      {/* جدول نتایج */}
+      {/* جدول خروجی */}
       <table
         className="table table-bordered text-center"
         style={{ margin: "auto" }}
       >
         <thead className="table-primary">
           <tr>
-            <th>Process</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Deadline</th>
-            <th>Start Time</th>
-            <th>Finish Time</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
+            <th>{t("edf.process")}</th>
+            <th>{t("edf.arrivalTime")}</th>
+            <th>{t("edf.burstTime")}</th>
+            <th>{t("edf.deadline")}</th>
+            <th>{t("edf.startTime")}</th>
+            <th>{t("edf.finishTime")}</th>
+            <th>{t("edf.waitingTime")}</th>
+            <th>{t("edf.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
@@ -139,9 +138,15 @@ const EDF = ({ rows }) => {
         </tbody>
       </table>
 
+      {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current.toFixed(2)}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current.toFixed(2)}</h5>
+        <h5>
+          {t("edf.avgWaitingTime")}: {avgWaitingTimeRef.current.toFixed(2)}
+        </h5>
+        <h5>
+          {t("edf.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current.toFixed(2)}
+        </h5>
       </div>
     </div>
   );

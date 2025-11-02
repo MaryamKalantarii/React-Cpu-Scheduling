@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const FPPS = ({ rows }) => {
+  const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
@@ -48,7 +50,7 @@ const FPPS = ({ rows }) => {
       time++;
       current.remainingTime--;
 
-      // ثبت بازه اجرا برای نمودار گانت
+      // ثبت بازه اجرا برای گانت چارت
       if (
         timeline.length === 0 ||
         timeline[timeline.length - 1].id !== current.id
@@ -87,9 +89,9 @@ const FPPS = ({ rows }) => {
 
   return (
     <div className="container my-5">
-      <h4>Fixed Priority Preemptive Scheduling (FPPS)</h4>
+      <h4>{t("fpps.outputTitle")}</h4>
 
-      {/* نمودار گانت */}
+      {/* گانت چارت */}
       <div className="d-flex my-4 flex-wrap">
         {executedProcesses.timeline.map((item, i) => (
           <div
@@ -114,14 +116,14 @@ const FPPS = ({ rows }) => {
       >
         <thead className="table-warning">
           <tr>
-            <th>Process</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Priority</th>
-            <th>Start Time</th>
-            <th>Finish Time</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
+            <th>{t("fpps.process")}</th>
+            <th>{t("fpps.arrivalTime")}</th>
+            <th>{t("fpps.burstTime")}</th>
+            <th>{t("fpps.priority")}</th>
+            <th>{t("fpps.startTime")}</th>
+            <th>{t("fpps.finishTime")}</th>
+            <th>{t("fpps.waitingTime")}</th>
+            <th>{t("fpps.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
@@ -142,8 +144,13 @@ const FPPS = ({ rows }) => {
 
       {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current.toFixed(2)}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current.toFixed(2)}</h5>
+        <h5>
+          {t("fpps.avgWaitingTime")}: {avgWaitingTimeRef.current.toFixed(2)}
+        </h5>
+        <h5>
+          {t("fpps.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current.toFixed(2)}
+        </h5>
       </div>
     </div>
   );

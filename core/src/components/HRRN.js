@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const HRRN = ({ rows }) => {
+  const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
@@ -35,25 +37,22 @@ const HRRN = ({ rows }) => {
         continue;
       }
 
-      // محاسبه Response Ratio برای هر پردازه آماده
+      // محاسبه نسبت پاسخ برای هر پردازه آماده
       available.forEach((p) => {
         p.responseRatio =
           (currentTime - p.arrivalTime + p.burstTime) / p.burstTime;
       });
 
-      // انتخاب پردازه با بالاترین Response Ratio
+      // انتخاب پردازه با بالاترین نسبت پاسخ
       available.sort((a, b) => b.responseRatio - a.responseRatio);
       const current = available[0];
 
-      // شروع و پایان زمان اجرا
       current.startTime = currentTime;
       currentTime += current.burstTime;
       current.finishTime = currentTime;
 
-      // محاسبه زمان‌ها
       current.turnaroundTime = current.finishTime - current.arrivalTime;
       current.waitingTime = current.turnaroundTime - current.burstTime;
-
       current.completed = true;
       completedCount++;
 
@@ -83,9 +82,9 @@ const HRRN = ({ rows }) => {
 
   return (
     <div className="container my-5">
-      <h4>Output for Highest Response Ratio Next (HRRN) Algorithm</h4>
+      <h4>{t("hrrn.outputTitle")}</h4>
 
-      {/* نمودار گانت */}
+      {/* گانت چارت */}
       <div className="d-flex my-4 flex-wrap">
         {executedProcesses.timeline.map((item, i) => (
           <div
@@ -110,14 +109,14 @@ const HRRN = ({ rows }) => {
       >
         <thead className="table-primary">
           <tr>
-            <th>Process</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Start Time</th>
-            <th>Finish Time</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
-            <th>Response Ratio</th>
+            <th>{t("hrrn.process")}</th>
+            <th>{t("hrrn.arrivalTime")}</th>
+            <th>{t("hrrn.burstTime")}</th>
+            <th>{t("hrrn.startTime")}</th>
+            <th>{t("hrrn.finishTime")}</th>
+            <th>{t("hrrn.waitingTime")}</th>
+            <th>{t("hrrn.turnaroundTime")}</th>
+            <th>{t("hrrn.responseRatio")}</th>
           </tr>
         </thead>
         <tbody>
@@ -130,9 +129,7 @@ const HRRN = ({ rows }) => {
               <td>{p.finishTime}</td>
               <td>{p.waitingTime}</td>
               <td>{p.turnaroundTime}</td>
-              <td>
-                {((p.turnaroundTime) / p.burstTime).toFixed(2)}
-              </td>
+              <td>{(p.turnaroundTime / p.burstTime).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
@@ -140,8 +137,13 @@ const HRRN = ({ rows }) => {
 
       {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current.toFixed(2)}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current.toFixed(2)}</h5>
+        <h5>
+          {t("hrrn.avgWaitingTime")}: {avgWaitingTimeRef.current.toFixed(2)}
+        </h5>
+        <h5>
+          {t("hrrn.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current.toFixed(2)}
+        </h5>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <Header />
       <Hero />
       <About />

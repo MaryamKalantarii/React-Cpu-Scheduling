@@ -8,6 +8,12 @@ import SRT from "./SRT";
 import LJF from "./LJF";
 import RLTF from "./RLTF";
 import PriorityScheduling from "./PriorityScheduling";
+import MLQ from "./MLQ";
+import MLFQ from "./MLFQ";
+import EDF from "./EDF";
+import FPPS from "./FPPS";
+import HRRN from "./HRRN";
+
 const Table = ({ onEvaluate = () => {} }) => {
   const { t } = useTranslation();
 
@@ -70,7 +76,7 @@ const Table = ({ onEvaluate = () => {} }) => {
       case "Round Robin":
         return <RoundRobinScheduler rows={rows} quantum={quantum} />;
       case "PriorityScheduling":
-         return <PriorityScheduling rows={rows} />;
+        return <PriorityScheduling rows={rows} />;
       case "SRT":
         return <SRT rows={rows} />;
       case "LJF":
@@ -79,15 +85,30 @@ const Table = ({ onEvaluate = () => {} }) => {
         return <RLTF rows={rows} />;
       case "FIFO":
         return <FIFO rows={rows} />;
+      case "MLQ":
+        return <MLQ rows={rows} />;
+      case "MLFQ":
+        return <MLFQ rows={rows} />;
+      case "EDF":
+        return <EDF rows={rows} />;
+      case "FPPS":
+        return <FPPS rows={rows} />;
+      case "HRRN":
+        return <HRRN rows={rows} />;
       default:
         return null;
     }
   };
 
   return (
-    <div style={{ background: "rgba(250, 250, 250, 0.657)" }}>
-      <div className="d-flex justify-content-center align-items-center">
-        <h1 className="text-center my-4">{title ? `${title} Algorithm` : t("selectAlgorithmTitle")}</h1>
+    <div id="algoritm" class="features section">
+      <div class="container section-title" data-aos="fade-up">
+        <span class="subtitle">Algoritm</span>
+        <div className="d-flex justify-content-center align-items-center">
+      
+        <h1 className="text-center my-4">
+          {title ? `${title} Algorithm` : t("selectAlgorithmTitle")}
+        </h1>
         <div className="dropdown ms-4">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -106,11 +127,18 @@ const Table = ({ onEvaluate = () => {} }) => {
             <li><Link className="dropdown-item" onClick={() => setAlgo("RLTF")} to="#">{t("algorithms.RLTF")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("Round Robin")} to="#">{t("algorithms.RoundRobin")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("Priority Non-Preemptive")} to="#">{t("algorithms.PriorityNonPreemptive")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("MLQ")} to="#">{t("algorithms.MLQ")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("MLFQ")} to="#">{t("algorithms.MLFQ")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("EDF")} to="#">{t("algorithms.EDF")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("FPPS")} to="#">{t("algorithms.FPPS")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("HRRN")} to="#">{t("algorithms.HRRN")}</Link></li>
           </ul>
         </div>
       </div>
+      </div>
+      
 
-      {/* توضیحات الگوریتم انتخاب شده */}
+      {/* توضیحات الگوریتم */}
       {title && (
         <div className="text-center my-3">
           <p className="lead">{t(`algorithmDescriptions.${title}`)}</p>
@@ -173,3 +201,4 @@ const Table = ({ onEvaluate = () => {} }) => {
 };
 
 export default Table;
+

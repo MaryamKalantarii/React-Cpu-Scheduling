@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const MLFQ = ({ rows }) => {
+  const { t } = useTranslation();
   const [executed, setExecuted] = useState([]);
   const avgWaitingTimeRef = useRef(0);
   const avgTurnaroundTimeRef = useRef(0);
@@ -49,7 +51,6 @@ const MLFQ = ({ rows }) => {
         currentProcess.remainingTime
       );
 
-      // اجرای بخشی از پردازه
       executedTimeline.push({
         id: currentProcess.id,
         start: time,
@@ -60,12 +61,10 @@ const MLFQ = ({ rows }) => {
       time += execTime;
       currentProcess.remainingTime -= execTime;
 
-      // اگه تموم شد → ثبت زمان پایان
       if (currentProcess.remainingTime === 0) {
         currentProcess.completionTime = time;
         completed++;
       } else {
-        // اگه تموم نشد → انتقال به صف پایین‌تر
         if (currentProcess.queueLevel < 3) {
           currentProcess.queueLevel++;
         }
@@ -98,9 +97,9 @@ const MLFQ = ({ rows }) => {
 
   return (
     <div className="container my-5">
-      <h4>Output for Multi-Level Feedback Queue (MLFQ) Algorithm</h4>
+      <h4>{t("mlfq.outputTitle")}</h4>
 
-      {/* Gantt Chart */}
+      {/* گانت چارت */}
       <div className="d-flex my-4 flex-wrap">
         {executed.timeline.map((e, i) => (
           <div
@@ -120,7 +119,7 @@ const MLFQ = ({ rows }) => {
             <br />
             ({e.start}-{e.end})
             <br />
-            <small>Q{e.queue}</small>
+            <small>{t("mlfq.queue")} {e.queue}</small>
           </div>
         ))}
       </div>
@@ -132,13 +131,13 @@ const MLFQ = ({ rows }) => {
       >
         <thead className="table-primary">
           <tr>
-            <th>Process</th>
-            <th>Arrival Time</th>
-            <th>Burst Time</th>
-            <th>Final Queue</th>
-            <th>Completion Time</th>
-            <th>Waiting Time</th>
-            <th>Turnaround Time</th>
+            <th>{t("mlfq.process")}</th>
+            <th>{t("mlfq.arrivalTime")}</th>
+            <th>{t("mlfq.burstTime")}</th>
+            <th>{t("mlfq.finalQueue")}</th>
+            <th>{t("mlfq.completionTime")}</th>
+            <th>{t("mlfq.waitingTime")}</th>
+            <th>{t("mlfq.turnaroundTime")}</th>
           </tr>
         </thead>
         <tbody>
@@ -158,8 +157,13 @@ const MLFQ = ({ rows }) => {
 
       {/* میانگین‌ها */}
       <div className="my-4">
-        <h5>Average Waiting Time: {avgWaitingTimeRef.current.toFixed(2)}</h5>
-        <h5>Average Turnaround Time: {avgTurnaroundTimeRef.current.toFixed(2)}</h5>
+        <h5>
+          {t("mlfq.avgWaitingTime")}: {avgWaitingTimeRef.current.toFixed(2)}
+        </h5>
+        <h5>
+          {t("mlfq.avgTurnaroundTime")}:{" "}
+          {avgTurnaroundTimeRef.current.toFixed(2)}
+        </h5>
       </div>
     </div>
   );
