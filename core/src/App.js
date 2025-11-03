@@ -9,7 +9,8 @@ import Header from "./components/header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Table from './components/Table';
+import Table from "./components/Table";
+import ResultsChart from "./components/ResultsChart"; // 👈 اضافه شد
 
 function App() {
   useEffect(() => {
@@ -20,11 +21,13 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <Header />
       <Hero />
       <About />
+     
       <Table />
+      <ResultsChart />
       <Footer />
     </BrowserRouter>
   );

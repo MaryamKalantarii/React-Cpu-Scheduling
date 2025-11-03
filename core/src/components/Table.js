@@ -34,6 +34,7 @@ const Table = ({ onEvaluate = () => {} }) => {
       { id: "3", arrivalTime: "", burstTime: "", priority: "" },
     ]);
   }, [title]);
+  
 
   const addRow = () => {
     setRows([
@@ -53,7 +54,7 @@ const Table = ({ onEvaluate = () => {} }) => {
     setPriority(
       algoName === "Priority Preemptive" || algoName === "Priority Non-Preemptive"
     );
-    setQuantum(algoName === "Round Robin" ? true : false);
+    setQuantum(algoName === "RR" ? true : false);
     setShowAlgo("");
   };
 
@@ -64,16 +65,40 @@ const Table = ({ onEvaluate = () => {} }) => {
       burstTime: row.burstTime,
       priority: row.priority,
     }));
-
+  
     onEvaluate(tableData, quantum);
     setShowAlgo(title);
+  
+    setTimeout(() => {
+      const avgWaitElem = document.querySelector("h5:nth-of-type(1)");
+      const avgTurnElem = document.querySelector("h5:nth-of-type(2)");
+  
+      if (!avgWaitElem || !avgTurnElem) return; // اگر DOM آماده نیست، هیچ کاری نکن
+  
+      const avgWait = avgWaitElem.textContent.match(/[\d.]+/);
+      const avgTurn = avgTurnElem.textContent.match(/[\d.]+/);
+  
+      if (avgWait && avgTurn) {
+        const newResult = {
+          algorithm: title,
+          avgWaitingTime: parseFloat(avgWait[0]),
+          avgTurnaroundTime: parseFloat(avgTurn[0]),
+        };
+  
+        const existing = JSON.parse(sessionStorage.getItem("algorithmResults")) || [];
+        const updated = [...existing.filter(r => r.algorithm !== title), newResult];
+  
+        sessionStorage.setItem("algorithmResults", JSON.stringify(updated));
+        window.dispatchEvent(new Event("storage-update"));
+      }
+    }, 1000); // 👈 طولانی‌تر برای RR
   };
 
   const renderAlgorithm = () => {
     switch (showAlgo) {
       case "SJF":
         return <Sjf rows={rows} />;
-      case "Round Robin":
+      case "RR":
         return <RoundRobinScheduler rows={rows} quantum={quantum} />;
       case "PriorityScheduling":
         return <PriorityScheduling rows={rows} />;
@@ -125,7 +150,7 @@ const Table = ({ onEvaluate = () => {} }) => {
             <li><Link className="dropdown-item" onClick={() => setAlgo("SRT")} to="#">{t("algorithms.SRT")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("LJF")} to="#">{t("algorithms.LJF")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("RLTF")} to="#">{t("algorithms.RLTF")}</Link></li>
-            <li><Link className="dropdown-item" onClick={() => setAlgo("Round Robin")} to="#">{t("algorithms.RoundRobin")}</Link></li>
+            <li><Link className="dropdown-item" onClick={() => setAlgo("RR")} to="#">{t("algorithms.RoundRobin")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("Priority Non-Preemptive")} to="#">{t("algorithms.PriorityNonPreemptive")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("MLQ")} to="#">{t("algorithms.MLQ")}</Link></li>
             <li><Link className="dropdown-item" onClick={() => setAlgo("MLFQ")} to="#">{t("algorithms.MLFQ")}</Link></li>
