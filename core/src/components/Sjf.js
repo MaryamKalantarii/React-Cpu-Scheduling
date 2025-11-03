@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const SJF = ({ rows }) => {
   const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
@@ -74,12 +74,8 @@ const SJF = ({ rows }) => {
         {executedProcesses.map((p, index) => (
           <div
             key={index}
-            className="border border-primary text-center"
-            style={{
-              height: "100%",
-              width: "20%",
-              background: "#CBDBFF",
-            }}
+            className="border-primary-purple"
+         
           >
             P{p.id}
             <br />

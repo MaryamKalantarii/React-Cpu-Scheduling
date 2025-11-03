@@ -96,10 +96,10 @@ const SRT = ({ rows }) => {
         {executed.map((e, i) => (
           <div
             key={i}
-            className="border border-primary text-center"
+            className="border-primary-purple"
             style={{
               width: `${(e.end - e.start) * 40}px`,
-              background: "#FFD7B5",
+             
             }}
           >
             P{e.id}

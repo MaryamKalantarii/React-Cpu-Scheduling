@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const MLQ = ({ rows }) => {
   const { t } = useTranslation();
   const [executed, setExecuted] = useState([]);
@@ -105,10 +105,10 @@ const MLQ = ({ rows }) => {
         {executed.timeline.map((e, i) => (
           <div
             key={i}
-            className="border text-center mx-1"
+            className="border-primary-purple"
             style={{
               width: `${(e.end - e.start) * 40}px`,
-              background: e.queue === 1 ? "#B8E1FF" : "#FFD6A5",
+          
             }}
           >
             P{e.id}

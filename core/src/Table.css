@@ -44,7 +44,7 @@
   box-shadow: 0 0 15px #00ffe0, 0 0 30px #00ffe0;
 }
 .selected-algo span {
-  color: #00ffe0;
+  color: #5598fd;
   font-weight: bold;
 }
 
@@ -188,3 +188,13 @@ input.form-control:not(.table input):focus {
 .process.P4 { color: #ffa500;  }
 .process.P5 { color: #8a2be2;  }
 /* برای Processهای بیشتر می‌توانید کلاس جدید اضافه کنید */
+
+
+
+
+.border-primary-purple {
+  background-color: #a200ff;
+  margin-left: 500px;
+  border-radius: 15px;
+  text-align: center; /* همون text-center */
+}

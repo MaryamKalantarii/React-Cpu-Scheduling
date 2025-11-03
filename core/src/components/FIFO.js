@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const FIFO = ({ rows }) => {
   const { t } = useTranslation(); // اتصال به i18next
   const [processes, setProcesses] = useState([]);
@@ -53,8 +53,8 @@ const FIFO = ({ rows }) => {
         {processes.map((p) => (
           <div
             key={p.id}
-            className="border border-primary text-center"
-            style={{ height: "100%", width: "20%", background: "#CBDBFF" }}
+            className="border-primary-purple"
+            style={{ height: "100%", width: "20%", }}
           >
             P{p.id}
             <br />

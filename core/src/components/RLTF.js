@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const RLTF = ({ rows, quantum }) => {
   const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
@@ -64,7 +64,7 @@ const RLTF = ({ rows, quantum }) => {
         {executedProcesses.map(p => (
           <div
             key={p.id}
-            className="border text-center"
+            className="border-primary-purple"
             style={{ width: "20%", background: "#FFD1D1" }}
           >
             P{p.id}

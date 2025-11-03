@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const EDF = ({ rows }) => {
   const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
@@ -92,10 +92,10 @@ const EDF = ({ rows }) => {
         {executedProcesses.timeline.map((item, i) => (
           <div
             key={i}
-            className="border text-center mx-1"
+            className="border-primary-purple"
             style={{
               width: `${(item.end - item.start) * 40}px`,
-              background: "#AED6F1",
+           
             }}
           >
             P{item.id}
