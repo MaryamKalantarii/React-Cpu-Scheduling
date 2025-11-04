@@ -1,0 +1,200 @@
+/* ---------------- کل بخش الگوریتم ---------------- */
+#algoritm {
+  background: linear-gradient(135deg, #0a0012, #1a0025);
+  padding: 2.5rem;
+  color: #e0d8ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 0 60px rgba(146, 30, 255, 0.5);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ---------------- عنوان‌ها ---------------- */
+.section-title h1 {
+  color: #9f39ff;
+  text-shadow: 0 0 25px #b86bff, 0 0 50px #7a00ff;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  animation: glowPulse 3s infinite ease-in-out;
+  text-align: center;
+}
+
+.subtitle {
+  color: #be54ff;
+  text-shadow: 0 0 10px #d28bff;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------------- منوی انتخاب الگوریتم ---------------- */
+.d-flex.flex-column.align-items-start.gap-3.mb-4 {
+  align-items: center !important;
+}
+
+.algo-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #c0c0c0;
+  box-shadow: 0 0 5px #b86bff60;
+  transition: all 0.3s ease;
+}
+.algo-circle.active {
+  background-color: #00ffe0;
+  box-shadow: 0 0 15px #00ffe0, 0 0 30px #00ffe0;
+}
+.selected-algo span {
+  color: #5598fd;
+  font-weight: bold;
+}
+
+/* ---------------- جدول ---------------- */
+.table {
+  width: 90%;
+  margin: 3rem auto;
+  border-radius: 15px;
+  overflow: hidden;
+  background: rgba(202, 191, 206, 0.15);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 40px rgba(102, 62, 139, 0.5);
+  font-size: 1.1rem;
+  border: 1px solid #b86bff;
+  transition: all 0.3s ease;
+}
+
+.table th {
+  background-color: rgba(184, 107, 255, 0.2);
+  color: #fff;
+  text-shadow: 0 0 10px #b86bff;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #b86bff50;
+}
+.table td {
+  padding: 1rem;
+  font-weight: 500;
+}
+.table tbody tr:hover {
+  background-color: rgba(184, 107, 255, 0.1);
+  box-shadow: 0 0 15px rgba(184, 107, 255, 0.3);
+  transform: scale(1.01);
+  transition: 0.2s;
+}
+.table input {
+  background-color: rgba(202, 161, 255, 0.8);
+  border: 1px solid #b86bff;
+  color: #4c0099;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 1rem;
+  height: 2.5rem;
+  width: 90%;
+  transition: all 0.3s ease;
+}
+.table input:focus {
+  outline: none;
+  box-shadow: 0 0 15px #b86bff, inset 0 0 8px rgba(184, 107, 255, 0.6);
+  border-color: #d28bff;
+  background-color: #ae80ff;
+  color: #4a007a;
+}
+
+/* ---------------- ورودی‌ها (جدای از جدول) ---------------- */
+input.form-control:not(.table input) {
+  background-color: rgba(50, 0, 80, 0.85);
+  border: 1.5px solid #b86bff;
+  color: #e0d8ff;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1rem;
+  height: 2.8rem;
+  width: 6rem;
+  transition: all 0.3s ease;
+}
+input.form-control:not(.table input):focus {
+  outline: none;
+  box-shadow: 0 0 20px #b86bff, inset 0 0 10px rgba(184, 107, 255, 0.6);
+  border-color: #d28bff;
+  background-color: rgba(100, 0, 150, 0.9);
+  color: #fff;
+}
+
+/* ---------------- Row Buttons + و - ---------------- */
+.row-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.row-buttons .btn {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------- دکمه‌ها ---------------- */
+.btn {
+  border: none;
+  font-weight: 600;
+  padding: 0.65rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px #b86bff50;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8a2be2, #b86bff);
+  color: #fff;
+  box-shadow: 0 0 20px #8a2be2a0;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #b86bff, #8a2be2);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px #b86bffb0;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #00d08c, #00ffa3);
+  color: #000;
+  box-shadow: 0 0 20px #00ffa380;
+}
+.btn-danger {
+  background: linear-gradient(135deg, #ff4fa5, #ff6fcf);
+  color: #fff;
+  box-shadow: 0 0 20px #ff4fa580;
+}
+
+/* ---------------- افکت‌ها ---------------- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes glowPulse { 0%, 100% { text-shadow: 0 0 20px #b86bff, 0 0 40px #7a00ff; } 50% { text-shadow: 0 0 40px #c06bff, 0 0 80px #b86bff; } }
+
+/* ---------------- رنگ و استایل Processها ---------------- */
+.process {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+/* رنگ هر Process با افکت نئون */
+.process.P1 { color: #59fae7; }
+.process.P2 { color: #ff6fcf;  }
+.process.P3 { color: #4aff97; }
+.process.P4 { color: #ffa500;  }
+.process.P5 { color: #8a2be2;  }
+/* برای Processهای بیشتر می‌توانید کلاس جدید اضافه کنید */
+
+
+
+
+.border-primary-purple {
+  background-color: #a200ff;
+  margin-left: 500px;
+  border-radius: 15px;
+  text-align: center; /* همون text-center */
+}

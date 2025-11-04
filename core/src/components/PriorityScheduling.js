@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import "../Table.css";
 const PriorityScheduling = ({ rows }) => {
   const [executedProcesses, setExecutedProcesses] = useState([]);
   const avgWaitingTimeRef = useRef(0);
@@ -77,8 +77,8 @@ const PriorityScheduling = ({ rows }) => {
         {executedProcesses.map((p, i) => (
           <div
             key={i}
-            className="border border-primary text-center"
-            style={{ height: "100%", width: "20%", background: "#FFD7B5" }}
+            className="border-primary-purple"
+            style={{ height: "100%", width: "20%"}}
           >
             P{p.id}
             <br />

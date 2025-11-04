@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const LJF = ({ rows }) => {
   const { t } = useTranslation();
   const [executedProcesses, setExecutedProcesses] = useState([]);
@@ -68,8 +68,8 @@ const LJF = ({ rows }) => {
         {executedProcesses.map((p) => (
           <div
             key={p.id}
-            className="border text-center"
-            style={{ width: "20%", background: "#FFDFBA" }}
+            className="border-primary-purple"
+            style={{ width: "20%", background: "#8c00ffff" }}
           >
             P{p.id}
             <br />

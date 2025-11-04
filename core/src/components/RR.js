@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-
+import "../Table.css";
 const RoundRobinScheduler = ({ rows, quantum }) => {
   const { t } = useTranslation();
   const [processes, setProcesses] = useState([]);
@@ -84,8 +84,8 @@ const RoundRobinScheduler = ({ rows, quantum }) => {
         {processes.map((process, index) => (
           <div
             key={index}
-            className="border border-primary text-center"
-            style={{ height: "100%", width: "20%", background: "#CBDBFF" }}
+            className="border-primary-purple"
+            style={{ height: "100%", width: "20%" }}
           >
             P{process.id}
             <br />
