@@ -198,3 +198,7 @@ input.form-control:not(.table input):focus {
   border-radius: 15px;
   text-align: center; /* همون text-center */
 }
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-family: var(--heading-font);
+}
