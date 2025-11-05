@@ -8,7 +8,7 @@ function Header() {
         <div className="top-row d-flex align-items-center justify-content-between">
           <a href="index.html" className="logo d-flex align-items-center">
             
-            <h1 className="sitename">LeadPage</h1>
+            <h1 className="sitename">Algoritm</h1>
           </a>
   
           <div className="d-flex align-items-center">
@@ -29,10 +29,7 @@ function Header() {
               <li><a href="#hero" className="active">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#algoritm">Algoritm</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#pricing">Pricing</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#team">Team</a></li>
+              <li><a href="#chart">Chart</a></li>
              
               
             </ul>

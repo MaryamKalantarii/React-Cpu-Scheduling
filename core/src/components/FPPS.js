@@ -96,7 +96,7 @@ const FPPS = ({ rows }) => {
         {executedProcesses.timeline.map((item, i) => (
           <div
             key={i}
-            className="border-primary-purple"
+            className=""
             style={{
               width: `${(item.end - item.start) * 40}px`,
            

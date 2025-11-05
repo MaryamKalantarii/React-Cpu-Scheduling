@@ -96,7 +96,7 @@ const SRT = ({ rows }) => {
         {executed.map((e, i) => (
           <div
             key={i}
-            className="border-primary-purple"
+            className=""
             style={{
               width: `${(e.end - e.start) * 40}px`,
              
@@ -119,7 +119,7 @@ const SRT = ({ rows }) => {
             <th>{t("srt.process")}</th>
             <th>{t("srt.arrivalTime")}</th>
             <th>{t("srt.burstTime")}</th>
-            <th>{t("srt.completionTime")}</th>
+            <th>{t("srt.finishTime")}</th>
             <th>{t("srt.waitingTime")}</th>
             <th>{t("srt.turnaroundTime")}</th>
           </tr>

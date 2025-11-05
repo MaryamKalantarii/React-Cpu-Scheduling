@@ -105,7 +105,7 @@ const MLQ = ({ rows }) => {
         {executed.timeline.map((e, i) => (
           <div
             key={i}
-            className="border-primary-purple"
+            className=""
             style={{
               width: `${(e.end - e.start) * 40}px`,
           

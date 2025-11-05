@@ -74,7 +74,7 @@ const SJF = ({ rows }) => {
         {executedProcesses.map((p, index) => (
           <div
             key={index}
-            className="border-primary-purple"
+            className=""
          
           >
             P{p.id}

@@ -68,8 +68,8 @@ const LJF = ({ rows }) => {
         {executedProcesses.map((p) => (
           <div
             key={p.id}
-            className="border-primary-purple"
-            style={{ width: "20%", background: "#8c00ffff" }}
+            className=""
+            style={{ height: "100%", width: "20%", }}
           >
             P{p.id}
             <br />
