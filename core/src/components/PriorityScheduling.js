@@ -77,7 +77,7 @@ const PriorityScheduling = ({ rows }) => {
         {executedProcesses.map((p, i) => (
           <div
             key={i}
-            className="border-primary-purple"
+            className=""
             style={{ height: "100%", width: "20%"}}
           >
             P{p.id}

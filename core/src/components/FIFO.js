@@ -53,7 +53,7 @@ const FIFO = ({ rows }) => {
         {processes.map((p) => (
           <div
             key={p.id}
-            className="border-primary-purple"
+            className=""
             style={{ height: "100%", width: "20%", }}
           >
             P{p.id}
