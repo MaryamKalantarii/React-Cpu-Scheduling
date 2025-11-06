@@ -202,3 +202,99 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
     font-family: var(--heading-font);
 }
+/* ---------------- حالت ریسپانسیو برای موبایل ---------------- */
+@media (max-width: 768px) {
+  #algoritm {
+    padding: 1rem;
+  }
+
+  .section-title h1 {
+    font-size: 1.8rem;
+  }
+
+  .table {
+    width: 100%;
+    font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.6rem;
+  }
+
+  .table input {
+    width: 70px;
+    height: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .row-buttons .btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .btn-primary,
+  .btn-success,
+  .btn-danger {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .d-flex.flex-column.align-items-start.gap-3.mb-4 {
+    gap: 0.8rem;
+  }
+
+  .algo-circle {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .mlq-table, .mlq-table thead, .mlq-table tbody, .mlq-table th, .mlq-table td, .mlq-table tr {
+    display: block;
+  }
+
+  .mlq-table thead {
+    display: none;
+  }
+
+  .mlq-table tr {
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    padding: 0.8rem;
+    box-shadow: 0 0 15px rgba(184,107,255,0.3);
+  }
+
+  .mlq-table td {
+    text-align: right;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    position: relative;
+  }
+
+  .mlq-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 0.5rem;
+    font-weight: bold;
+    color: #b86bff;
+    text-align: left;
+  }
+}
+
