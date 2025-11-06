@@ -1,4 +1,5 @@
 import React from 'react';
+import "../Header.css";
 
 function Header() {
     return (
@@ -10,14 +11,28 @@ function Header() {
             
             <h1 className="sitename">Algoritm</h1>
           </a>
-  
-          <div className="d-flex align-items-center">
-            <div className="social-links">
-              <a href="#" className="facebook"><i className="bi bi-facebook"></i></a>
-              <a href="#" className="twitter"><i className="bi bi-twitter"></i></a>
-              <a href="#" className="instagram"><i className="bi bi-instagram"></i></a>
-            </div>
-          </div>
+  <div className="d-flex align-items-center">
+  <div className="social-links">
+    <a
+      href="https://github.com/MaryamKalantarii/"
+      className="github"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="bi bi-github"></i>
+    </a>
+
+    <a
+      href="https://github.com/mhidusti/"
+      className="github"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i className="bi bi-github"></i>
+    </a>
+  </div>
+</div>
+
         </div>
   
       </div>

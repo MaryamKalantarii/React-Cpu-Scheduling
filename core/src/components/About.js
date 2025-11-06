@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../logo.svg";
+import "../About.css";
 import { useTranslation } from "react-i18next";
 
 function About() {
@@ -62,15 +63,7 @@ function About() {
 
           <div className="col-lg-6" data-aos="fade-left" data-aos-delay="300">
             <img src={logo} alt="logo" className="App-logo" />
-
-            <div className="image-wrapper">
-              <div className="floating-element">
-                <div className="quote-content">
-                  <blockquote>{t("about.quote")}</blockquote>
-                  <cite>{t("about.quoteAuthor")}</cite>
-                </div>
-              </div>
-            </div>
+            {/* 🚫 بخش نقل‌قول حذف شد */}
           </div>
         </div>
       </div>

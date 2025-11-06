@@ -108,7 +108,7 @@ const EDF = ({ rows }) => {
       {/* جدول خروجی */}
       <table
         className="table table-bordered text-center"
-        style={{ margin: "auto" }}
+        style={{ margin: "auto"}}
       >
         <thead className="table-primary">
           <tr>

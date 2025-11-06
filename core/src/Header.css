@@ -1,0 +1,97 @@
+/* ==== نوار بالا ==== */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(10, 10, 25, 0.75);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==== لوگو و نام سایت ==== */
+.sitename {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #7a00ff;
+  letter-spacing: 1px;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.sitename:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+}
+
+/* ==== آیکون‌های شبکه‌های اجتماعی ==== */
+.social-links a {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-left: 15px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+/* ==== منو ==== */
+.navmenu ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.navmenu a {
+  color: #ccc;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.navmenu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navmenu a:hover {
+  color: #fff;
+}
+
+.navmenu a:hover::after,
+.navmenu a.active::after {
+  width: 100%;
+}
+
+/* ==== حالت موبایل ==== */
+.mobile-nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: #00ffff;
+}
+
+@media (max-width: 991px) {
+  .navmenu ul {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+}

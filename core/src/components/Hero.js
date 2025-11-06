@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import "../Hero.css";
 
 function Hero() {
   const { t, i18n } = useTranslation();
@@ -14,19 +15,21 @@ function Hero() {
 
   return (
     <section id="hero" className="hero section dark-background">
-      <div className="video-background">
-        <video autoPlay loop muted playsInline>
-          <source src="/assets/img/video/video-2.mp4" type="video/mp4" />
-          {t('videoNotSupported')}
-        </video>
-        <div className="video-overlay"></div>
-      </div>
+ <div className="video-background">
+  <img
+    src="/assets/img/video/pic.jpg"
+    alt="CPU Visualization Banner"
+    className="background-image"
+  />
+  <div className="video-overlay"></div>
+</div>
+
 
       <div className="hero-content">
         <div className="container position-relative">
           <div className="row justify-content-center text-center">
             <div className="col-lg-8">
-              <h1 data-aos-delay="100">{t('hero.title')}</h1>
+         
               <p data-aos-delay="200">{t('hero.description')}</p>
 
               <div className="hero-buttons" data-aos-delay="300">

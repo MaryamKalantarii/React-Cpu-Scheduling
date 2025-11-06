@@ -30,31 +30,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="col-lg-2 col-6">
-          <div className="footer-links">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> About</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Careers</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Press</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Blog</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Contact</a></li>
-            </ul>
-          </div>
-        </div>
 
-        <div className="col-lg-2 col-6">
-          <div className="footer-links">
-            <h4>Solutions</h4>
-            <ul>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Digital Strategy</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Cloud Computing</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Data Analytics</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> AI Solutions</a></li>
-              <li><a href="#"><i className="bi bi-chevron-right"></i> Cybersecurity</a></li>
-            </ul>
-          </div>
-        </div>
 
         <div className="col-lg-4">
           <div className="footer-contact">
@@ -72,7 +48,7 @@ function Footer() {
                 <i className="bi bi-telephone"></i>
               </div>
               <div className="contact-info">
-                <p>+1 (555) 987-6543</p>
+                <p>09186030812</p>
               </div>
             </div>
 
@@ -114,7 +90,7 @@ function Footer() {
             </div>
             <div className="credits">
               
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            designed by maryam and moa
             </div>
           </div>
         </div>
