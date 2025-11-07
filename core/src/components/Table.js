@@ -16,7 +16,7 @@ import "../Table.css";
 
 const algorithms = [
   "FIFO", "SJF", "SRT", "LJF", "RLTF", "RR", 
-  "Priority Non-Preemptive", "MLQ", "MLFQ", "EDF", "FPPS", "HRRN"
+  "PriorityNonPreemptive", "MLQ", "MLFQ", "EDF", "FPPS", "HRRN"
 ];
 
 const Table = ({ onEvaluate = () => {} }) => {

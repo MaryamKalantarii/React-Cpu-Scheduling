@@ -184,14 +184,13 @@ const RoundRobinScheduler = ({ rows = [], quantum }) => {
 
       {/* Gantt Chart */}
       {processes.length > 0 && (
-        <div className="d-flex my-4 align-items-end" style={{ gap: 6 }}>
+        <div className="d-flex justify-content-center align-items-center my-4 text-center">
           {processes.map((process, index) => {
             const width = Math.max(20, (process.executed || 1) * 12); // simple visual scaling
             return (
               <div
                 key={index}
-                className="text-center p-1"
-                style={{ height: 40, minWidth: width }}
+                className="border p-2" style={{ width: "20%" }}
                 title={`P${process.id}: ${process.startTime} - ${process.finishTime}`}
               >
                 P{process.id}

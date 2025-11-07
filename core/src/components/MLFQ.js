@@ -100,15 +100,11 @@ const MLFQ = ({ rows }) => {
       <h4>{t("mlfq.outputTitle")}</h4>
 
       {/* گانت چارت */}
-      <div className="d-flex my-4 flex-wrap">
+      <div className="d-flex justify-content-center align-items-center my-4 text-center">
         {executed.timeline.map((e, i) => (
           <div
             key={i}
-            className=""
-            style={{
-              width: `${(e.end - e.start) * 40}px`,
-       
-            }}
+            className="border p-2" style={{ width: "20%" }}
           >
             P{e.id}
             <br />

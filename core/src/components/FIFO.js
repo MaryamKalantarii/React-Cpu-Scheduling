@@ -49,12 +49,11 @@ const FIFO = ({ rows }) => {
       <h3>{t("fifo.outputTitle")}</h3>
 
       {/* گانت چارت */}
-      <div className="d-flex my-4">
+      <div className="d-flex justify-content-center align-items-center my-4 text-center">
         {processes.map((p) => (
           <div
             key={p.id}
-            className=""
-            style={{ height: "100%", width: "20%", }}
+            className="border p-2" style={{ width: "20%", margin: "right" }}
           >
             P{p.id}
             <br />
