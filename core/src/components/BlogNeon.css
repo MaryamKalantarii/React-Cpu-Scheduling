@@ -1,0 +1,97 @@
+body {
+  background-color: #000; /* کل بکگراند مشکی */
+}
+
+.blog-neon-container {
+  width: 95%;
+  margin: auto;
+  padding: 60px 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  background-color: #000; /* مطمئن شدن از بکگراند مشکی */
+}
+
+.blog-title {
+  font-size: 3rem;
+  margin-bottom: 50px;
+  color: #c77dff;
+  text-shadow: 0 0 15px #ff00cc, 0 0 30px #b86bff;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 250px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-align: center;
+  border: 2px solid transparent;
+  box-shadow: 0 0 20px rgba(184, 107, 255, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Neon Animated Border */
+.flip-card-front {
+  background: linear-gradient(135deg, #0a0012, #1a0025);
+  color: #ff00cc;
+  border-image: linear-gradient(45deg, #ff00cc, #b86bff, #00ffe0, #ff00cc) 1;
+}
+
+.flip-card-front:hover {
+  box-shadow: 0 0 30px #ff00cc, 0 0 60px #b86bff, 0 0 90px #00ffe0;
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #ff00cc, #b86bff, #00ffe0, #ff00cc) 1;
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, #1a0025, #300040);
+  color: #fff;
+  transform: rotateY(180deg);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Hover Neon Pulse Animation */
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 20px #ff00cc, 0 0 40px #b86bff, 0 0 60px #00ffe0; }
+  50% { box-shadow: 0 0 35px #ff00cc, 0 0 70px #b86bff, 0 0 105px #00ffe0; }
+}
+
+.flip-card:hover .flip-card-front {
+  animation: neonPulse 1.5s infinite alternate;
+}
