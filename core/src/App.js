@@ -9,6 +9,7 @@ import Header from "./components/header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import BlogNeon from "./components/BlogNeon";
 import Table from "./components/Table";
 import ResultsChart from "./components/ResultsChart"; // 👈 اضافه شد
 
@@ -25,6 +26,7 @@ function App() {
       <Header />
       <Hero />
       <About />
+      <BlogNeon />
      
       <Table />
       <ResultsChart />
