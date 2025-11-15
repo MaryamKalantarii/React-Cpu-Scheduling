@@ -70,11 +70,11 @@ const SJF = ({ rows }) => {
       <h3>{t("sjf.outputTitle")}</h3>
 
       {/* Gantt Chart */}
-      <div className="d-flex my-4">
+      <div className="d-flex justify-content-center align-items-center my-4 text-center">
         {executedProcesses.map((p, index) => (
           <div
             key={index}
-            className=""
+            className="border p-2" style={{ width: "20%" }}
          
           >
             P{p.id}

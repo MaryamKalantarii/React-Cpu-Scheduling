@@ -68,7 +68,7 @@
         "burstTime": "زمان پردازش",
         "queue": "سطح صف",
         "startTime": "زمان شروع",
-        "finishTime": "زمان پایان",
+        "completionTime": "زمان پایان",
         "waitingTime": "زمان انتظار",
         "turnaroundTime": "زمان بازگشت",
         "avgWaitingTime": "میانگین زمان انتظار",
@@ -102,7 +102,7 @@
         },
        
         "priorityNonPreemptive": {
-          "outputTitle": "خروجی الگوریتم Priority",
+          "outputTitle": "خروجی الگوریتم Priority(انحصاری)",
           "process": "فرآیند",
           "arrivalTime": "زمان ورود",
           "burstTime": "زمان پردازش",

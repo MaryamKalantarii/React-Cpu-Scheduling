@@ -92,15 +92,11 @@ const FPPS = ({ rows }) => {
       <h4>{t("fpps.outputTitle")}</h4>
 
       {/* گانت چارت */}
-      <div className="d-flex my-4 flex-wrap">
+      <div className="d-flex justify-content-center align-items-center my-4 text-center">
         {executedProcesses.timeline.map((item, i) => (
           <div
             key={i}
-            className=""
-            style={{
-              width: `${(item.end - item.start) * 40}px`,
-           
-            }}
+            className="border p-2" style={{ width: "20%" }}
           >
             P{item.id}
             <br />

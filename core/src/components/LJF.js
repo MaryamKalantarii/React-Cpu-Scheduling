@@ -64,12 +64,11 @@ const LJF = ({ rows }) => {
   return (
     <div className="container my-5">
       <h3>{t('ljf.outputTitle')}</h3>
-      <div className="d-flex my-4">
+      <div className="d-flex justify-content-center align-items-center my-4 text-center">
         {executedProcesses.map((p) => (
           <div
             key={p.id}
-            className=""
-            style={{ height: "100%", width: "20%", }}
+            className="border p-2" style={{ width: "20%" }}
           >
             P{p.id}
             <br />
