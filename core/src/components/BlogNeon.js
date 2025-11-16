@@ -34,8 +34,8 @@ const algorithms = [
   {
     name: { en: "RLTF", fa: "RLTF" },
     description: {
-      en: "Preemptive version of LJF where a longer process can interrupt the current process.",
-      fa: "نسخه پیش‌گیرانه LJF که پردازه طولانی‌تر می‌تواند پردازه فعلی را متوقف کند."
+      en: "In RLTF, the process with the longest remaining time is prioritized.",
+      fa: "در RLTF، پردازه‌ای با بیشترین زمان باقیمانده در اولویت است."
     }
   },
   {
